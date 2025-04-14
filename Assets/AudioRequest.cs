@@ -2,10 +2,12 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
+using TMPro;
 
 public class AudioRequest : MonoBehaviour
 {
-    string ngrokUrl;
+    public TMP_InputField inputField;  // 🎤 텍스트 입력창 연결 필요
+    private string ngrokUrl;
 
     void Start()
     {
@@ -24,31 +26,51 @@ public class AudioRequest : MonoBehaviour
 
     public void RequestAudio()
     {
-        StartCoroutine(GetAudioClip());
+        string text = inputField.text;
+        if (string.IsNullOrEmpty(text))
+        {
+            Debug.LogWarning("⚠️ 입력된 텍스트가 없습니다.");
+            return;
+        }
+
+        StartCoroutine(SendTextThenGetAudio(text));
     }
 
-    IEnumerator GetAudioClip()
+    IEnumerator SendTextThenGetAudio(string text)
     {
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(ngrokUrl + "/get-audio", AudioType.WAV))
-        {
-            yield return www.SendWebRequest();
+        // 1️⃣ 텍스트를 Flask로 전송
+        WWWForm form = new WWWForm();
+        form.AddField("text", text);
 
-            if (www.result == UnityWebRequest.Result.Success)
+        using (UnityWebRequest sendTextRequest = UnityWebRequest.Post(ngrokUrl + "/speak", form))
+        {
+            yield return sendTextRequest.SendWebRequest();
+
+            if (sendTextRequest.result != UnityWebRequest.Result.Success)
             {
-                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
-                GetComponent<AudioSource>().clip = clip;
-                if (GetComponent<AudioSource>().isPlaying)
-                {
-                    Debug.Log("이미 재생 중입니다.");
-                }
-                else
-                {
-                    GetComponent<AudioSource>().Play();
-                }
+                Debug.LogError("❌ TTS 전송 실패: " + sendTextRequest.error);
+                yield break;
+            }
+        }
+
+        Debug.Log("✅ 텍스트 전송 성공, 오디오 요청 중...");
+
+        // 2️⃣ 오디오 파일 요청
+        using (UnityWebRequest getAudioRequest = UnityWebRequestMultimedia.GetAudioClip(ngrokUrl + "/get-audio", AudioType.WAV))
+        {
+            yield return getAudioRequest.SendWebRequest();
+
+            if (getAudioRequest.result == UnityWebRequest.Result.Success)
+            {
+                AudioClip clip = DownloadHandlerAudioClip.GetContent(getAudioRequest);
+                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource.clip = clip;
+                audioSource.Play();
+                Debug.Log("🎧 음성 재생 시작");
             }
             else
             {
-                Debug.LogError("요청 실패: " + www.error);
+                Debug.LogError("❌ 오디오 요청 실패: " + getAudioRequest.error);
             }
         }
     }
