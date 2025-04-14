@@ -1,0 +1,16 @@
+README.md filter=lfs diff=lfs merge=lfs -text
+obj filter=lfs diff=lfs merge=lfs -text
+Logs filter=lfs diff=lfs merge=lfs -text
+Temp filter=lfs diff=lfs merge=lfs -text
+undream.llmunity.Editor.csproj filter=lfs diff=lfs merge=lfs -text
+Cloud.Unum.USearch.csproj filter=lfs diff=lfs merge=lfs -text
+HunSuChung.sln filter=lfs diff=lfs merge=lfs -text
+Assets filter=lfs diff=lfs merge=lfs -text
+undream.llmunity.Runtime.csproj filter=lfs diff=lfs merge=lfs -text
+Library filter=lfs diff=lfs merge=lfs -text
+Packages filter=lfs diff=lfs merge=lfs -text
+ProjectSettings filter=lfs diff=lfs merge=lfs -text
+UserSettings filter=lfs diff=lfs merge=lfs -text
+undream.llmunity.Runtime.Tests.csproj filter=lfs diff=lfs merge=lfs -text
+Assembly-CSharp-Editor.csproj filter=lfs diff=lfs merge=lfs -text
+Assembly-CSharp.csproj filter=lfs diff=lfs merge=lfs -text
