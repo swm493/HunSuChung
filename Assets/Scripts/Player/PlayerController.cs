@@ -5,13 +5,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
-    private InputAction _moveAction;
 
-    private bool _isMoving;
+    [SerializeField] private Vector2 _direction;
+    [SerializeField] private float _force = 0;
+    [SerializeField] private float _deltaTime = 0;
+    [SerializeField] private bool _isClick = false;
+    [SerializeField] private bool _isGrounded = false;
+
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _direction = _direction.normalized;
     }
 
     private void OnEnable()
@@ -26,18 +31,27 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.PlayerActions.Click.canceled -= OnButtonUp;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (_isMoving) _rigidbody.AddForce(Vector2.up * 1f, ForceMode2D.Impulse);
+        if (_isClick) _deltaTime += Time.deltaTime;
     }
 
     private void OnButtonDown(InputAction.CallbackContext context)
     {
-        _isMoving = true;
+        if (!_isGrounded) return;
+        _isClick = true;
     }
 
     private void OnButtonUp(InputAction.CallbackContext context)
     {
-        _isMoving = false;
+        _rigidbody.AddForce(_deltaTime * _force * _direction, ForceMode2D.Impulse);
+        _deltaTime = 0;
+        _isClick = false;
+        _isGrounded = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        _isGrounded = true;
     }
 }
