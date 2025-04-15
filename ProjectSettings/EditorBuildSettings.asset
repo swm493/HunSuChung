@@ -5,9 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 433a1d823acd5bb40961608f8da2bdef
+  - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: 6864945af48146f43a66ea980eec9963
+  - enabled: 1
+    path: Assets/Scenes/StageSelect.unity
+    guid: 29ef4cd0f57bb5b4592b46d91f8a5b71
+  - enabled: 1
+    path: Assets/Scenes/Ending.unity
+    guid: 79219343f7a6d374b8ccad521733dc05
   m_configObjects:
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: e0f090f48e000de479199cb83c1e9dbe, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
