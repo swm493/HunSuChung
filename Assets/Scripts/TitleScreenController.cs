@@ -8,6 +8,7 @@ public class TitleScreenController : MonoBehaviour
     public Button startButton;
     public Button settingButton;
     public Button quitButton;
+    public Button LLMButton;
 
     // Settings Panel 참조 (Inspector에서 연결)
     public GameObject settingsPanel;
@@ -21,6 +22,7 @@ public class TitleScreenController : MonoBehaviour
         startButton.onClick.AddListener(OnStartClicked);
         settingButton.onClick.AddListener(OnSettingClicked);
         quitButton.onClick.AddListener(OnQuitClicked);
+        LLMButton.onClick.AddListener(OnLLMClicked);
 
         // CloseButton 이벤트 할당: Settings Panel 닫기
         if (closeButton != null)
@@ -51,6 +53,13 @@ public class TitleScreenController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    void OnLLMClicked()
+    {
+        PlayerPrefs.SetString("TargetScene", "LLM");
+        // 로딩 씬으로 전환
+        SceneManager.LoadScene("Loading");
     }
 
     // CloseButton 클릭 시 Settings Panel 비활성화

@@ -2,6 +2,7 @@ using UnityEngine;
 using LLMUnity;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 namespace LLMUnitySamples
 {
@@ -83,8 +84,7 @@ namespace LLMUnitySamples
 
         public void ExitGame()
         {
-            Debug.Log("Exit button clicked");
-            Application.Quit();
+            SceneManager.LoadScene("Title");
         }
 
         bool onValidateWarning = true;
