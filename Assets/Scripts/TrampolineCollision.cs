@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Collider2D))]    // ¡ç Collider ¡æ Collider2D ·Î º¯°æ
+[RequireComponent(typeof(Collider2D))]    // ï¿½ï¿½ Collider ï¿½ï¿½ Collider2D ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 public class TrampolineCollision : MonoBehaviour
 {
     [SerializeField] private float launchForce = 10f;
@@ -10,9 +10,9 @@ public class TrampolineCollision : MonoBehaviour
     {
         if (!other.CompareTag("Player")) return;
 
-        // µÚ·Î Æ¨°Ü³»±â
+        // ï¿½Ú·ï¿½ Æ¨ï¿½Ü³ï¿½ï¿½ï¿½
         var rb = other.attachedRigidbody;
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.AddForce(Vector2.left * launchForce, ForceMode2D.Impulse);
     }
 }
