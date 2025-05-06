@@ -57,7 +57,7 @@ public class TitleScreenController : MonoBehaviour
 
     void OnLLMClicked()
     {
-        PlayerPrefs.SetString("TargetScene", "LLM");
+        PlayerPrefs.SetString("TargetScene", "LLMGameTestScene");
         // 로딩 씬으로 전환
         SceneManager.LoadScene("Loading");
     }
