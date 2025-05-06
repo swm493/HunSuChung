@@ -1930,6 +1930,154 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &2070851065
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2070851067}
+  - component: {fileID: 2070851066}
+  - component: {fileID: 2070851069}
+  - component: {fileID: 2070851068}
+  m_Layer: 0
+  m_Name: LLM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2070851066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070851065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a50e3140c3ecaaf1c848dbf141cc2074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  advancedOptions: 0
+  remote: 0
+  port: 13333
+  numThreads: -1
+  numGPULayers: 0
+  debug: 0
+  parallelPrompts: -1
+  dontDestroyOnLoad: 1
+  contextSize: 8192
+  batchSize: 512
+  model: Qwen2.5-7B-Instruct-Q4_K_M.gguf
+  chatTemplate: chatml
+  lora: 
+  loraWeights: 
+  flashAttention: 0
+  APIKey: 
+  SSLCert: 
+  SSLCertPath: 
+  SSLKey: 
+  SSLKeyPath: 
+  minContextLength: 0
+  maxContextLength: 32768
+  embeddingsOnly: 0
+  embeddingLength: 3584
+--- !u!4 &2070851067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070851065}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2070851068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070851065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9688fe0bcdf1e8c4e87429281a2bf9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2070851069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070851065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f6c87a428fd5d0be9bbc686bdc8c3c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  advancedOptions: 0
+  remote: 0
+  _llm: {fileID: 2070851066}
+  APIKey: 
+  host: localhost
+  port: 13333
+  numRetries: 10
+  save: 
+  saveCache: 0
+  debugPrompt: 0
+  numPredict: -1
+  slot: -1
+  grammar: 
+  cachePrompt: 1
+  seed: 0
+  temperature: 0.2
+  topK: 40
+  topP: 0.9
+  minP: 0.05
+  repeatPenalty: 1.1
+  presencePenalty: 0
+  frequencyPenalty: 0
+  typicalP: 1
+  repeatLastN: 64
+  penalizeNl: 1
+  penaltyPrompt: 
+  mirostat: 0
+  mirostatTau: 5
+  mirostatEta: 0.1
+  nProbs: 0
+  ignoreEos: 0
+  nKeep: -1
+  stop: []
+  stream: 1
+  playerName: "\uD50C\uB808\uC774\uC5B4"
+  AIName: "\uC870\uB825\uC790"
+  prompt: "\uC5ED\uD560: \uB108\uB294 \uD50C\uB808\uC774\uC5B4\uC640 \uD568\uAED8
+    \uD50C\uB808\uC774\uD558\uB294 \uB9D0 \uB9CE\uC740 AI \uD30C\uD2B8\uB108\uC57C.
+    \uB108\uB294 \uB2E8\uC21C\uD788 \uC815\uBCF4\uB97C \uC804\uB2EC\uD558\uB294 \uAC8C
+    \uC544\uB2C8\uB77C, \uD50C\uB808\uC774\uC5B4\uC758 \uCE5C\uAD6C\uCC98\uB7FC \uB9D0\uD558\uACE0,
+    \uC7A5\uB09C\uCE58\uACE0, \uACA9\uB824\uD558\uACE0, \uB180\uB9AC\uAE30\uB3C4
+    \uD574. \uB54C\uB54C\uB85C \uCCA0\uD559\uC801\uC778 \uB9D0\uB3C4 \uD574.\r\n\r\n\uBAA9\uD45C:
+    \uD50C\uB808\uC774\uC5B4\uC758 \uAC10\uC815\uC744 \uB530\uB77C\uAC00\uBA70 \uBAB0\uC785\uAC10\uC744
+    \uB192\uC774\uB294 \uB9D0\uC744 \uD574\uC918. \uD50C\uB808\uC774\uC5B4\uAC00
+    \uD63C\uC790 \uC788\uC9C0 \uC54A\uB2E4\uB294 \uB290\uB08C\uC744 \uC8FC\uB294
+    \uAC83\uC774 \uC911\uC694\uD574.\r\n\n\uC751\uB2F5 \uBC29\uC2DD:\r\n- 1~2\uBB38\uC7A5
+    \uB0B4\uC758 \uB300\uC0AC\r\n- \uAC10\uC815, \uB9D0\uD22C, \uAC1C\uC131 \uC720\uC9C0\r\n-
+    \uAC00\uB2A5\uD55C \uD55C \uD50C\uB808\uC774\uC5B4 \uC0C1\uD669\uC5D0 \uBC00\uC811\uD558\uAC8C
+    \uBC18\uC751\r\n- \uB9E4\uD06C\uB85C\uB098 \uACE0\uC815\uB41C \uBB38\uC7A5 \uB300\uC2E0
+    \uC720\uB3D9\uC801\uC73C\uB85C \uAD6C\uC131\n\n\uCE90\uB9AD\uD130 \uC124\uC815:\n-
+    Cheerful Buddy (\uBC1D\uACE0 \uC751\uC6D0\uD558\uB294 \uCE5C\uAD6C)\r"
+  setNKeepToPrompt: 1
+  chat: []
+  grammarString: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1938,3 +2086,4 @@ SceneRoots:
   - {fileID: 1442690032}
   - {fileID: 1235574532}
   - {fileID: 707118978}
+  - {fileID: 2070851067}

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _deltaTime = 0;
     [SerializeField] private bool _isClick = false;
     [SerializeField] private bool _isGrounded = false;
+    [SerializeField] private float _forceLimit = 10f;
 
 
     private void Awake()
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnButtonUp(InputAction.CallbackContext context)
     {
+        if (_deltaTime >= _forceLimit) _deltaTime = _forceLimit;
         _rigidbody.AddForce(_deltaTime * _force * _direction, ForceMode2D.Impulse);
         _deltaTime = 0;
         _isClick = false;
