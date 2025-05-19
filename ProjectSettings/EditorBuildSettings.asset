@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Entrance.unity
+    guid: 6c155ee38c7254941a51ee373610c505
+  - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 433a1d823acd5bb40961608f8da2bdef
   - enabled: 1
@@ -36,6 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/LLMGameTestScene.unity
     guid: e6c5847849af1244baffdc5e43a9a11e
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 89ddbd955a8388c43b777cf300ec5b95, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: e0f090f48e000de479199cb83c1e9dbe, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

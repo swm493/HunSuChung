@@ -110,6 +110,7 @@ namespace LLMUnity
         public LLM()
         {
             LLMManager.Register(this);
+
         }
 
         void OnValidate()

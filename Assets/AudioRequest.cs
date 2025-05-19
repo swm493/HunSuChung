@@ -9,7 +9,7 @@ public class AudioRequest : MonoBehaviour
     public TMP_InputField inputField;
     private string ngrokUrl;
 
-    void Start()
+    private void Start()
     {
         string path = Path.Combine(Application.streamingAssetsPath, "ngrok_url.txt");
         if (File.Exists(path))
@@ -35,30 +35,29 @@ public class AudioRequest : MonoBehaviour
         StartCoroutine(SendTextAndGetAudio(text));
     }
 
-    IEnumerator SendTextAndGetAudio(string text)
-{
-    WWWForm form = new WWWForm();
-    form.AddField("text", text);
-
-    using (UnityWebRequest www = UnityWebRequest.Post(ngrokUrl + "/speak", form))
+    private IEnumerator SendTextAndGetAudio(string text)
     {
-        // 오디오 파일로 응답받기 위해 DownloadHandlerAudioClip 지정
-        www.downloadHandler = new DownloadHandlerAudioClip(ngrokUrl + "/speak", AudioType.WAV);
-        yield return www.SendWebRequest();
+        WWWForm form = new WWWForm();
+        form.AddField("text", text);
 
-        if (www.result == UnityWebRequest.Result.Success)
+        using (UnityWebRequest www = UnityWebRequest.Post(ngrokUrl + "/speak", form))
         {
-            AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
-            AudioSource audioSource = GetComponent<AudioSource>();
-            audioSource.clip = clip;
-            audioSource.Play();
-            Debug.Log("🎧 음성 재생 완료!");
-        }
-        else
-        {
-            Debug.LogError("❌ 서버 요청 실패: " + www.error);
+            // 오디오 파일로 응답받기 위해 DownloadHandlerAudioClip 지정
+            www.downloadHandler = new DownloadHandlerAudioClip(ngrokUrl + "/speak", AudioType.WAV);
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource.clip = clip;
+                audioSource.Play();
+                Debug.Log("🎧 음성 재생 완료!");
+            }
+            else
+            {
+                Debug.LogError("❌ 서버 요청 실패: " + www.error);
+            }
         }
     }
-}
-
 }
