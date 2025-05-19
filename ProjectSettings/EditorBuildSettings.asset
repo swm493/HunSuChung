@@ -18,19 +18,19 @@ EditorBuildSettings:
     path: Assets/Scenes/StageSelect.unity
     guid: 29ef4cd0f57bb5b4592b46d91f8a5b71
   - enabled: 1
-    path: Assets/Scenes/GameStage1.unity
+    path: Assets/Scenes/GameStage/GameStage1.unity
     guid: e75dc0f909816964f91390941d6c108f
   - enabled: 1
-    path: Assets/Scenes/GameStage2.unity
+    path: Assets/Scenes/GameStage/GameStage2.unity
     guid: c270a11ee7da9df4a8d1859389dd9287
   - enabled: 1
-    path: Assets/Scenes/GameStage3.unity
+    path: Assets/Scenes/GameStage/GameStage3.unity
     guid: 2f6ce5a83040dfa43a7e172975554ec7
   - enabled: 1
-    path: Assets/Scenes/GameStage4.unity
+    path: Assets/Scenes/GameStage/GameStage4.unity
     guid: 9d7769d7ebf96cb4bb482465530ee0d4
   - enabled: 1
-    path: Assets/Scenes/GameStage5.unity
+    path: Assets/Scenes/GameStage/GameStage5.unity
     guid: 00923a913d693724f87d024caeaef052
   - enabled: 1
     path: Assets/Scenes/Ending.unity

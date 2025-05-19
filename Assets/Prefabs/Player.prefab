@@ -166,8 +166,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: {x: 1, y: 1}
-  _force: 10
+  _force: 5
   _deltaTime: 0
+  _timeLimit: 3
   _isClick: 0
   _isGrounded: 0
-  _forceLimit: 1
