@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PingPongMover1 : MonoBehaviour
+public class PingPongMover2 : MonoBehaviour
 {
     [Header("이동 속도")]
     public float speed = 2f;
@@ -20,6 +20,6 @@ public class PingPongMover1 : MonoBehaviour
         // time * speed 값이 0→distance→0→distance… 를 반복
         float x = Mathf.PingPong(Time.time * speed, distance);
         // 시작 위치에서 오른쪽으로 x만큼 이동
-        transform.position = startPos + Vector3.right * x;
+        transform.position = startPos + Vector3.left * x;
     }
 }

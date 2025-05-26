@@ -14,7 +14,7 @@ public class SceneManagerEx : MonoSingleton<SceneManagerEx>
 
     public void LoadSceneAsync(string sceneName)
     {
-        SceneManager.LoadScene("Loading");
+        SceneManager.LoadScene("LoadingScene");
         StartCoroutine(AsyncIEnum(sceneName));
     }
 

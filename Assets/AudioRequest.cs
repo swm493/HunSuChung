@@ -11,26 +11,7 @@ public class AudioRequest : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(LoadNgrokUrl());
-    }
-
-    IEnumerator LoadNgrokUrl()
-    {
         string path = Path.Combine(Application.streamingAssetsPath, "ngrok_url.txt");
-
-#if UNITY_ANDROID && !UNITY_EDITOR
-        UnityWebRequest www = UnityWebRequest.Get(path);
-        yield return www.SendWebRequest();
-        if (www.result == UnityWebRequest.Result.Success)
-        {
-            ngrokUrl = www.downloadHandler.text.Trim();
-            Debug.Log("✔️ ngrok 주소 로딩됨: " + ngrokUrl);
-        }
-        else
-        {
-            Debug.LogError("❌ ngrok_url.txt 로드 실패: " + www.error);
-        }
-#else
         if (File.Exists(path))
         {
             ngrokUrl = File.ReadAllText(path).Trim();
@@ -40,8 +21,6 @@ public class AudioRequest : MonoBehaviour
         {
             Debug.LogError("❌ ngrok_url.txt 파일이 존재하지 않음!");
         }
-        yield return null;
-#endif
     }
 
     public void RequestAudio()
@@ -57,39 +36,29 @@ public class AudioRequest : MonoBehaviour
     }
 
     IEnumerator SendTextAndGetAudio(string text)
+{
+    WWWForm form = new WWWForm();
+    form.AddField("text", text);
+
+    using (UnityWebRequest www = UnityWebRequest.Post(ngrokUrl + "/speak", form))
     {
-        string postUrl = ngrokUrl + "/speak";
+        // 오디오 파일로 응답받기 위해 DownloadHandlerAudioClip 지정
+        www.downloadHandler = new DownloadHandlerAudioClip(ngrokUrl + "/speak", AudioType.WAV);
+        yield return www.SendWebRequest();
 
-        // 1단계: 텍스트 전송 (POST) → 오디오 생성
-        WWWForm form = new WWWForm();
-        form.AddField("text", text);
-
-        using (UnityWebRequest postRequest = UnityWebRequest.Post(postUrl, form))
+        if (www.result == UnityWebRequest.Result.Success)
         {
-            yield return postRequest.SendWebRequest();
-            if (postRequest.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError("❌ 텍스트 전송 실패: " + postRequest.error);
-                yield break;
-            }
+            AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.clip = clip;
+            audioSource.Play();
+            Debug.Log("🎧 음성 재생 완료!");
         }
-
-        // 2단계: 생성된 오디오 다운로드
-        using (UnityWebRequest getAudio = UnityWebRequestMultimedia.GetAudioClip(postUrl, AudioType.WAV))
+        else
         {
-            yield return getAudio.SendWebRequest();
-            if (getAudio.result == UnityWebRequest.Result.Success)
-            {
-                AudioClip clip = DownloadHandlerAudioClip.GetContent(getAudio);
-                AudioSource audioSource = GetComponent<AudioSource>();
-                audioSource.clip = clip;
-                audioSource.Play();
-                Debug.Log("🎧 음성 재생 완료!");
-            }
-            else
-            {
-                Debug.LogError("❌ 오디오 다운로드 실패: " + getAudio.error);
-            }
+            Debug.LogError("❌ 서버 요청 실패: " + www.error);
         }
     }
+}
+
 }
