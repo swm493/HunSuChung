@@ -8,12 +8,16 @@ namespace LLMUnitySamples
     {
         public LLMCharacter llmCharacter1;
         public LLMCharacter llmCharacter2;
+        public AudioRequest audioRequest;
 
         [Header("UI")]
         public InputField playerText;
         public Text AIText1;
         public Text AIText2;
         public Button[] situationButtons;   // 1~8번 버튼을 Inspector에 순서대로 넣어주세요
+
+        private string response1 = "";
+        private string response2 = "";
 
         int pendingResponses = 0;
 
@@ -61,18 +65,34 @@ namespace LLMUnitySamples
 
             _ = llmCharacter1.Chat(
                     situation,
-                    text => { if (AIText1) AIText1.text = text; },   // ★ 개별 콜백
+                    text => { 
+                        if (AIText1) AIText1.text = text;
+                        response1 = text;
+                    },
                     () => OnModelReplyComplete());
 
             _ = llmCharacter2.Chat(
                     situation,
-                    text => { if (AIText2) AIText2.text = text; },   // ★ 개별 콜백
+                    text => { 
+                        if (AIText2) AIText2.text = text;
+                        response2 = text;
+                    },
                     () => OnModelReplyComplete());
         }
         void OnModelReplyComplete()
         {
             pendingResponses--;
-            if (pendingResponses <= 0) AIReplyComplete();   // 두 응답 모두 끝났을 때만
+            if (pendingResponses <= 0)
+            {
+                AIReplyComplete();
+
+                string fullText = response1;
+                Debug.Log(fullText);
+
+                if (audioRequest)
+                    audioRequest.RequestAudioFromText(fullText);
+            }
+                
         }
 
         /* 인풋 필드 직접 입력 */
@@ -107,21 +127,5 @@ namespace LLMUnitySamples
             if (llmCharacter1) llmCharacter1.CancelRequests();
             if (llmCharacter2) llmCharacter2.CancelRequests();
         }
-
-        /* 모델 미선택 경고 */
-        /*
-        bool warnOnce = true;
-        void OnValidate()
-        {
-            if (warnOnce &&
-                !llmCharacter.remote &&
-                llmCharacter.llm != null &&
-                llmCharacter.llm.model == "")
-            {
-                Debug.LogWarning($"Please select a model in the {llmCharacter.llm.gameObject.name} GameObject!");
-                warnOnce = false;
-            }
-        }
-        */
     }
 }
