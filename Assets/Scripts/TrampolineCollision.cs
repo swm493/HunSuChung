@@ -5,10 +5,16 @@ using UnityEngine.SceneManagement;
 public class TrampolineCollision : MonoBehaviour
 {
     [SerializeField] private float launchForce = 10f;
+    GameObject JumpSound;
+    AudioSource backmusic;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
+
+        JumpSound = GameObject.Find("PlayerSpringSoundManager");
+        backmusic = JumpSound.GetComponent<AudioSource>();
+        backmusic.Play();
 
         // �ڷ� ƨ�ܳ���
         var rb = other.attachedRigidbody;
