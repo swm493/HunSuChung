@@ -3,12 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class SpikeCollision : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other)
+    public void OnCollision()
     {
-        if (other.CompareTag("Player"))
-        {
-            // 예: 현재 씬을 다시 로드
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

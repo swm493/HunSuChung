@@ -1,23 +1,12 @@
-using UnityEngine;
+using LLMUnity;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public void StartGame()
-    {
-        Debug.Log("Game Started!");
-    }
+    public LLM llm = null;
 
-    public void LoadGame()
+    protected override void Awake()
     {
-        Debug.Log("Game Loaded!");
-    }
-
-    public void EndGame()
-    {
-        Debug.Log("Game Ended!");
-    }
-    public void ExitGame()
-    {
-        Debug.Log("Game Exited!");
+        base.Awake();
+        llm = GetComponent<LLM>();
     }
 }

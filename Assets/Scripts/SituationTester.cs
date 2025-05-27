@@ -56,6 +56,7 @@ namespace LLMUnitySamples
         /* 버튼·인풋 공통 처리 */
         public void SubmitSituation(string situation)
         {
+            Debug.Log("상황 제출");
             playerText.interactable = false;
             playerText.text = situation;        // (선택) 입력창에 표시
             AIText1.text = "...";
@@ -81,6 +82,7 @@ namespace LLMUnitySamples
 
         void OnModelReplyComplete()
         {
+            Debug.Log("요청 들어감");
             pendingResponses--;
             if (pendingResponses <= 0)
             {
