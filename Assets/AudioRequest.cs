@@ -35,6 +35,17 @@ public class AudioRequest : MonoBehaviour
         StartCoroutine(SendTextAndGetAudio(text));
     }
 
+    public void RequestAudioFromText(string text)
+    {
+        if (string.IsNullOrEmpty(text))
+        {
+            Debug.LogWarning("⚠️ 변환할 텍스트가 없습니다.");
+            return;
+        }
+
+        StartCoroutine(SendTextAndGetAudio(text));
+    }
+
     IEnumerator SendTextAndGetAudio(string text)
 {
     WWWForm form = new WWWForm();
