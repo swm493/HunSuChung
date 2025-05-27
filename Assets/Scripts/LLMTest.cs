@@ -14,7 +14,7 @@ public class LLMTest : MonoBehaviour
     public void Game()
     {
 
-        string message = "¿À´Ãµµ ¼ö¾÷À» ¸ø °¬¾î ¤Ð¤Ì";
+    string message = "¿À´Ãµµ ¼ö¾÷À» ¸ø °¬¾î ¤Ð¤Ì";
         _ = llmCharacter.Chat(message, HandleReply);
-    }
+  }
 }

@@ -295,13 +295,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1236958771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8452698b641f5c04ba0b0e732960f2a4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0176ccb18e689d246be2ec0c5be15ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ballTransform: {fileID: 276711058}
-  duration: 2
-  startPosition: {x: -700, y: 0}
-  endPosition: {x: 700, y: 0}
+  duration: 3
+  startPosition: {x: -500, y: 0}
+  endPosition: {x: 500, y: 0}
 --- !u!4 &1236958773
 Transform:
   m_ObjectHideFlags: 0
