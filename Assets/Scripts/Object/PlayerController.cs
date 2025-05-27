@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private CircleCollider2D _collider;
 
+    GameObject JumpSound;
+    AudioSource backmusic;
+
     [SerializeField] private Vector2 _direction;
     [SerializeField] private float _force = 0;
     [SerializeField] private float _deltaTime = 0;
@@ -58,6 +61,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnButtonUp(InputAction.CallbackContext context)
     {
+        JumpSound = GameObject.Find("PlayerJumpSoundManager");
+        backmusic = JumpSound.GetComponent<AudioSource>();
+        backmusic.Play();
+
         if (_deltaTime >= _timeLimit) _deltaTime = _timeLimit;
         _rigidbody.AddForce(_deltaTime * _force * _direction, ForceMode2D.Impulse);
         _deltaTime = 0;
