@@ -8,7 +8,6 @@ namespace LLMUnitySamples
     {
         public LLMCharacter llmCharacter1;
         public LLMCharacter llmCharacter2;
-        public AudioRequest audioRequest;
 
         [Header("UI")]
         public InputField playerText;
@@ -50,12 +49,12 @@ namespace LLMUnitySamples
 
         void Start()
         {
-            playerText.onSubmit.AddListener(onInputFieldSubmit);
+            playerText.onSubmit.AddListener(OnInputFieldSubmit);
             playerText.Select();
         }
 
         /* 버튼·인풋 공통 처리 */
-        void SubmitSituation(string situation)
+        public void SubmitSituation(string situation)
         {
             playerText.interactable = false;
             playerText.text = situation;        // (선택) 입력창에 표시
@@ -79,6 +78,7 @@ namespace LLMUnitySamples
                     },
                     () => OnModelReplyComplete());
         }
+
         void OnModelReplyComplete()
         {
             pendingResponses--;
@@ -89,14 +89,12 @@ namespace LLMUnitySamples
                 string fullText = response1;
                 Debug.Log(fullText);
 
-                if (audioRequest)
-                    audioRequest.RequestAudioFromText(fullText);
+                AudioManager.Instance.RequestAudioFromText(fullText);
             }
-                
         }
 
         /* 인풋 필드 직접 입력 */
-        void onInputFieldSubmit(string message)
+        void OnInputFieldSubmit(string message)
         {
             SubmitSituation(message);
         }
