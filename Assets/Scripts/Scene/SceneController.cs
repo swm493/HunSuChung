@@ -1,3 +1,4 @@
+using Define;
 using UnityEngine;
 
 public class SceneController : MonoBehaviour
@@ -18,5 +19,15 @@ public class SceneController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void SelectCharacterGood()
+    {
+        GameManager.Instance.LLMCharacter = Character.Assister;
+    }
+
+    public void SelectCharacterBad()
+    {
+        GameManager.Instance.LLMCharacter = Character.Hunter;
     }
 }
