@@ -7,9 +7,6 @@ namespace LLMUnitySamples
 {
     public class SituationTester : MonoBehaviour
     {
-        public LLMCharacter llmCharacter1;
-        public LLMCharacter llmCharacter2;
-
         private string _response = "";
         public Text AIText;
 
@@ -22,7 +19,7 @@ namespace LLMUnitySamples
             switch (GameManager.Instance.LLMCharacter)
             {
                 case Character.Assister:
-                    _ = llmCharacter1.Chat(
+                    _ = GameManager.Instance.character1.Chat(
                             situation,
                             text =>
                             {
@@ -32,7 +29,7 @@ namespace LLMUnitySamples
                             () => OnModelReplyComplete());
                     break;
                 case Character.Hunter:
-                    _ = llmCharacter2.Chat(
+                    _ = GameManager.Instance.character2.Chat(
                             situation,
                             text =>
                             {

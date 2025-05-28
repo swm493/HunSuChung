@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isGrounded = false;
     [SerializeField] private UnityEvent<float> OnClickEvent;
 
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
