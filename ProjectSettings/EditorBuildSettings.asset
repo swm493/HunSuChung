@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Entrance.unity
+    guid: 6c155ee38c7254941a51ee373610c505
+  - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 433a1d823acd5bb40961608f8da2bdef
   - enabled: 1
@@ -15,27 +18,30 @@ EditorBuildSettings:
     path: Assets/Scenes/StageSelect.unity
     guid: 29ef4cd0f57bb5b4592b46d91f8a5b71
   - enabled: 1
-    path: Assets/Scenes/GameStage1.unity
+    path: Assets/Scenes/GameStage/GameStage1.unity
     guid: e75dc0f909816964f91390941d6c108f
   - enabled: 1
-    path: Assets/Scenes/GameStage2.unity
+    path: Assets/Scenes/GameStage/GameStage2.unity
     guid: c270a11ee7da9df4a8d1859389dd9287
   - enabled: 1
-    path: Assets/Scenes/GameStage3.unity
+    path: Assets/Scenes/GameStage/GameStage3.unity
     guid: 2f6ce5a83040dfa43a7e172975554ec7
   - enabled: 1
-    path: Assets/Scenes/GameStage4.unity
+    path: Assets/Scenes/GameStage/GameStage4.unity
     guid: 9d7769d7ebf96cb4bb482465530ee0d4
   - enabled: 1
-    path: Assets/Scenes/GameStage5.unity
+    path: Assets/Scenes/GameStage/GameStage5.unity
     guid: 00923a913d693724f87d024caeaef052
   - enabled: 1
     path: Assets/Scenes/Ending.unity
     guid: 79219343f7a6d374b8ccad521733dc05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/LLMGameTestScene.unity
     guid: e6c5847849af1244baffdc5e43a9a11e
   m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: adb609cadb2539a45b4774ea0ee41cfd, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 89ddbd955a8388c43b777cf300ec5b95, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: a9e0014466337524c962b58cdaaac93d, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: e0f090f48e000de479199cb83c1e9dbe, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

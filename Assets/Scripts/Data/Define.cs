@@ -1,9 +1,6 @@
 ﻿namespace Define {
-    public enum Scene
-    {
-        Unknown,
-        Title,
-        Loading,
-        Game
+    public enum Character { 
+        Assister,
+        Hunter
     }
 }

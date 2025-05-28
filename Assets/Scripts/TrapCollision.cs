@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class SpikeCollision : MonoBehaviour
 {
@@ -6,6 +6,9 @@ public class SpikeCollision : MonoBehaviour
 
     private Transform player;
     private Vector3 initialPos;
+
+    GameObject DieSound;
+    AudioSource backmusic;
 
     void Start() // get player's transform
     {
@@ -19,13 +22,16 @@ public class SpikeCollision : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            DieSound = GameObject.Find("PlayerDieSoundManager");
+            backmusic = DieSound.GetComponent<AudioSource>();
+            backmusic.Play();
+
             RespawnPlayer();
         }
     }
 
     void RespawnPlayer()
     {
-        // À§Ä¡ ÀÌµ¿
         Vector3 targetPos = respawnPoint ? respawnPoint.position : initialPos;
         player.position = targetPos;
 
