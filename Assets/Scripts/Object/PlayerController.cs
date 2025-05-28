@@ -1,3 +1,4 @@
+using LLMUnitySamples;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     GameObject JumpSound;
     AudioSource backmusic;
 
+    [SerializeField] private SituationTester _situationTester;
     [SerializeField] private Vector2 _direction;
     [SerializeField] private float _force = 0;
     [SerializeField] private float _deltaTime = 0;
@@ -19,11 +21,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool _isGrounded = false;
     [SerializeField] private UnityEvent<float> OnClickEvent;
 
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<CircleCollider2D>();
         _direction = _direction.normalized;
+
+        GameManager.Instance.StartGame = false;
+        _situationTester.SubmitSituation("플레이를 시작한다");
     }
 
     private void OnEnable()
@@ -40,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.StartGame) return;
+
         if (_isClick)
         {
             _deltaTime += Time.deltaTime;
@@ -55,12 +63,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnButtonDown(InputAction.CallbackContext context)
     {
+        if (!GameManager.Instance.StartGame) return;
+
         if (!_isGrounded) return;
         _isClick = true;
     }
 
     private void OnButtonUp(InputAction.CallbackContext context)
     {
+        if (!GameManager.Instance.StartGame) return;
+
         JumpSound = GameObject.Find("PlayerJumpSoundManager");
         backmusic = JumpSound.GetComponent<AudioSource>();
         backmusic.Play();

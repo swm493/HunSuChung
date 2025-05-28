@@ -15,6 +15,9 @@ namespace LLMUnitySamples
 
         public void SubmitSituation(string situation)
         {
+#if UNITY_EDITOR
+            Debug.Log(situation);
+#endif
             if (AIText) AIText.text = "...";
             switch (GameManager.Instance.LLMCharacter)
             {
@@ -44,12 +47,8 @@ namespace LLMUnitySamples
         void OnModelReplyComplete()
         {
             AudioManager.Instance.RequestAudioFromText(_response);
-        }
-
-        /* 인풋 필드 직접 입력 */
-        void OnInputFieldSubmit(string message)
-        {
-            SubmitSituation(message);
+            GameManager.Instance.StartGame = true;
+            Time.timeScale = 1;
         }
     }
 }

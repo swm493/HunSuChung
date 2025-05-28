@@ -1693,6 +1693,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 3608968695030711115}
     m_Modifications:
     - target: {fileID: -7340320232770787020, guid: 26c0d904ea3481b4fbea5445f565e395, type: 3}
+      propertyPath: _situationTester
+      value: 
+      objectReference: {fileID: 1442664662683875911}
+    - target: {fileID: -7340320232770787020, guid: 26c0d904ea3481b4fbea5445f565e395, type: 3}
       propertyPath: OnClickEvent.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
